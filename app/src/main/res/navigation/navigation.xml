@@ -12,9 +12,6 @@
         <action
             android:id="@+id/openRegisterAction"
             app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/openMainAction"
-            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -26,9 +23,4 @@
             app:destination="@id/logInFragment"
             app:popUpTo="@id/logInFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.porto.app.ui.main.MainFragment"
-        android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
 </navigation>

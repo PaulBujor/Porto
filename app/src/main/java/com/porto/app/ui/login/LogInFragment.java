@@ -52,7 +52,7 @@ public class LogInFragment extends Fragment {
     }
 
     private void logIn(View v) {
-        NavHostFragment.findNavController(this).navigate(R.id.openMainAction);
+//        NavHostFragment.findNavController(this).navigate(R.id.openMainAction);
     }
 
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/profileFragment"
+        android:title="@string/menu_profile"
+        android:icon="@drawable/ic_profile"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/socialFragment"
+        android:title="@string/menu_home"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/chatFragment"
+        android:title="@string/menu_chat"
+        android:icon="@drawable/ic_chat"
+        app:showAsAction="ifRoom"/>
+</menu>

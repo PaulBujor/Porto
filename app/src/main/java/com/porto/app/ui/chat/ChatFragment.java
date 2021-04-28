@@ -1,4 +1,4 @@
-package com.porto.app.ui.main;
+package com.porto.app.ui.chat;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,25 +14,24 @@ import android.view.ViewGroup;
 
 import com.porto.app.R;
 
-public class MainFragment extends Fragment {
+public class ChatFragment extends Fragment {
 
-    private MainViewModel mViewModel;
+    private ChatViewModel mViewModel;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static ChatFragment newInstance() {
+        return new ChatFragment();
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        return inflater.inflate(R.layout.chat_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
         // TODO: Use the ViewModel
     }
 
