@@ -17,13 +17,13 @@ Because modern social media apps are full of features most people don't even use
 
 ###### Should have
 - [ ] Users should see only posts from people they follow
-- [ ] Users can upload photos
-- [ ] Users can upload videos
+- [ ] Basic chat, users must follow each other in order to chat
 
 ###### Could have
 - [ ] Structure post comments with subcomments
-- [ ] Basic chat, users must follow each other in order to chat
 - [ ] User can accept chat from other users if not following each other
+- [ ] Users can upload photos
+- [ ] Users can upload videos
 
 ###### Won't have
 - Post suggestions 
