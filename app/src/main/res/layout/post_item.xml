@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.post.PostFragment">
+    android:background="@drawable/background_shadow">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/post_profileImage"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
@@ -25,19 +25,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="John Doe"
+            android:text="@string/post_name"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintStart_toEndOf="@+id/post_profileImage"
+            app:layout_constraintTop_toTopOf="@+id/post_profileImage" />
 
         <TextView
             android:id="@+id/post_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@johndoe"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/imageView" />
+            android:text="\@johndoe"
+            app:layout_constraintBottom_toBottomOf="@+id/post_profileImage"
+            app:layout_constraintStart_toEndOf="@+id/post_profileImage" />
 
         <TextView
             android:id="@+id/post_text"
@@ -49,7 +49,7 @@
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et diam velit. Aliquam aliquam mi eu leo imperdiet, eu accumsan massa volutpat. Pellentesque consequat nisl ac nunc gravida auctor. Phasellus tincidunt sollicitudin neque, vitae cursus leo ultricies vitae. Sed eget nulla sit amet felis volutpat ultrices eu ac magna. Etiam nec ligula condimentum, viverra nunc et, consectetur turpis. Nam sollicitudin diam mollis risus rhoncus, bibendum aliquet lorem volutpat. Fusce eget tellus sed felis elementum ultricies. Donec sed ultricies dolor."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/post_profileImage" />
 
         <ImageButton
             android:id="@+id/likeButton"
@@ -82,7 +82,25 @@
             android:paddingBottom="6dp"
             android:src="@drawable/ic_thumbs_down"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/likeButton"
+            app:layout_constraintStart_toEndOf="@+id/post_score"
+            app:layout_constraintTop_toBottomOf="@+id/post_text"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+            android:id="@+id/commentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#00FFFFFF"
+            android:paddingLeft="10dp"
+            android:paddingTop="6dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="6dp"
+            android:src="@drawable/ic_comment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dislikeButton"
             app:layout_constraintTop_toBottomOf="@+id/post_text" />
 
         <ImageButton
@@ -100,6 +118,18 @@
             android:src="@drawable/ic_share"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_text" />
+
+        <TextView
+            android:id="@+id/post_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/likeButton"
             app:layout_constraintTop_toBottomOf="@+id/post_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
