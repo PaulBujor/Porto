@@ -9,7 +9,11 @@
         android:id="@+id/socialFragment"
         android:name="com.porto.app.ui.social.SocialFragment"
         android:label="social_fragment"
-        tools:layout="@layout/social_fragment" />
+        tools:layout="@layout/social_fragment" >
+        <action
+            android:id="@+id/addPostAction"
+            app:destination="@id/addPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.porto.app.ui.chat.ChatFragment"
@@ -20,4 +24,13 @@
         android:name="com.porto.app.ui.profile.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.porto.app.ui.addpost.AddPostFragment"
+        android:label="add_post_fragment"
+        tools:layout="@layout/add_post_fragment" >
+        <action
+            android:id="@+id/backHomeFromCreateAction"
+            app:destination="@id/socialFragment" />
+    </fragment>
 </navigation>

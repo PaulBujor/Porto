@@ -4,7 +4,7 @@
     <string name="log">Log in</string>
     <string name="password">Password</string>
     <string name="password_confirm">Password</string>
-    <string name="username_email">Username or email</string>
+    <string name="username_email">Email</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="register">Register</string>
@@ -16,4 +16,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="post_name">John Doe</string>
+    <string name="postFieldHint">Write something here...</string>
+    <string name="postButton">Post</string>
 </resources>

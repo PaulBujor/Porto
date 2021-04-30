@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "222577576578",
+    "firebase_url": "https://porto-social-app-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "porto-social-app",
+    "storage_bucket": "porto-social-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222577576578:android:5f864710fdf93b9936029b",
+        "android_client_info": {
+          "package_name": "com.porto.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222577576578-bon0cmpopetng7gtusvme71vohspfr3r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.porto.app",
+            "certificate_hash": "d429f24051442dce5049491fc65d8fa525017a48"
+          }
+        },
+        {
+          "client_id": "222577576578-0repcu5jris3lb8ses7hh96unfve2uc6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBffS6qn1TT0dlG6dU-76IVwCx9xaY0lRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222577576578-0repcu5jris3lb8ses7hh96unfve2uc6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

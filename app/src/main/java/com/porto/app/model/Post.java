@@ -1,18 +1,22 @@
 package com.porto.app.model;
 
+import java.time.LocalDateTime;
+
 public class Post {
-    private long postId;
     private User writtenBy;
     private String text;
-    private int score;
+    private LocalDateTime timestamp;
 
     public Post() {
     }
 
-    public Post(User writtenBy, String text, int score) {
+    public Post(User writtenBy, String text) {
         this.writtenBy = writtenBy;
         this.text = text;
-        this.score = score;
+    }
+
+    public Post(String text) {
+        this.text = text;
     }
 
     public User getWrittenBy() {
@@ -27,19 +31,15 @@ public class Post {
         return text;
     }
 
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
     public void setText(String text) {
         this.text = text;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public long getPostId() {
-        return postId;
     }
 }

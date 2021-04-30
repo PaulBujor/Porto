@@ -34,10 +34,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.profileImage.setImageResource(R.drawable.ic_profile);
-        holder.name.setText(posts.get(position).getWrittenBy().getName());
-        holder.username.setText(String.format("@%s", posts.get(position).getWrittenBy().getUsername()));
+        holder.username.setText(posts.get(position).getWrittenBy().getName());
         holder.postText.setText(posts.get(position).getText());
-        holder.score.setText(String.valueOf(posts.get(position).getScore()));
+
+
     }
 
     public int getItemCount() {
@@ -46,7 +46,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView profileImage;
-        TextView name;
         TextView username;
         TextView postText;
         TextView score;
@@ -54,7 +53,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             profileImage = itemView.findViewById(R.id.post_profileImage);
-            name = itemView.findViewById(R.id.post_name);
             username = itemView.findViewById(R.id.post_username);
             postText = itemView.findViewById(R.id.post_text);
             score = itemView.findViewById(R.id.post_score);

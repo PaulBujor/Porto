@@ -1,11 +1,45 @@
 package com.porto.app.manager;
 
-import androidx.lifecycle.MutableLiveData;
+import com.google.firebase.auth.FirebaseUser;
+import com.porto.app.model.User;
 
-import com.porto.app.model.Post;
+public class Model {
+    //Singleton
+    private static Model instance;
+    private static Object threadLock = new Object();
 
-import java.util.List;
+    public static Model getInstance() {
+        if(instance == null) {
+            synchronized (threadLock) {
+                if(instance == null) {
+                    instance = new Model();
+                }
+            }
+        }
+        return instance;
+    }
 
-public interface Model {
-    public MutableLiveData<List<Post>> getAllPosts();
+    private User currentUser;
+    private FirebaseUser firebaseUser;
+
+    private Model() {
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public FirebaseUser getFirebaseUser() {
+        return firebaseUser;
+    }
+
+    public void setFirebaseUser(FirebaseUser firebaseUser) {
+        this.firebaseUser = firebaseUser;
+        currentUser = new User();
+        currentUser.setName(firebaseUser.getDisplayName());
+    }
 }

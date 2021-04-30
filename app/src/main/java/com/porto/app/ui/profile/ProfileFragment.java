@@ -11,10 +11,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.porto.app.R;
 
 public class ProfileFragment extends Fragment {
+    private TextView name;
 
     private ProfileViewModel mViewModel;
 
@@ -25,7 +27,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.profile_fragment, container, false);
+        View view = inflater.inflate(R.layout.profile_fragment, container, false);
+
+        name = view.findViewById(R.id.username);
+
+        return view;
     }
 
     @Override
@@ -33,6 +39,8 @@ public class ProfileFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         // TODO: Use the ViewModel
+
+        name.setText(mViewModel.getUser().getName());
     }
 
 }
