@@ -15,14 +15,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.porto.app.R;
 import com.porto.app.model.Post;
 
 public class AddPostFragment extends Fragment {
+    private ImageView profile;
     private ImageButton backButton;
     private Button addPostButton;
     private EditText textField;
+    private TextView profileName;
 
     private AddPostViewModel mViewModel;
 
@@ -42,22 +46,28 @@ public class AddPostFragment extends Fragment {
 
         textField = view.findViewById(R.id.toPostText);
 
+        profile = view.findViewById(R.id.profileImage);
+        profile.setImageResource(R.drawable.ic_profile);
+
+        profileName = view.findViewById(R.id.username);
+
         return view;
     }
 
     private void goBack(View v) {
-        NavHostFragment.findNavController(this).navigate(R.id.backHomeFromCreateAction);
+        NavHostFragment.findNavController(this).popBackStack();
     }
 
     private void addPost(View v) {
         mViewModel.addPost(new Post(textField.getText().toString()));
-        NavHostFragment.findNavController(this).navigate(R.id.backHomeFromCreateAction);
+        NavHostFragment.findNavController(this).popBackStack();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(AddPostViewModel.class);
+        profileName.setText(mViewModel.getUser().getName());
         // TODO: Use the ViewModel
     }
 

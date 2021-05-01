@@ -1,5 +1,7 @@
 package com.porto.app.dao;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,9 +12,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.porto.app.model.Post;
+import com.porto.app.model.User;
 import com.porto.app.repository.PostRepository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class PostDao {
@@ -26,12 +32,34 @@ public class PostDao {
 
     private PostDao() {
         posts = new MutableLiveData<>();
-        posts.setValue(new ArrayList<>());
         ref.child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Post> currentPosts = posts.getValue();
-                currentPosts.add(snapshot.getValue(Post.class));
+                List<Post> currentPosts = new ArrayList<>();
+                try {
+                    DataSnapshot subSnapshot;
+                    Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
+                    while(null != (subSnapshot = iterator.next())) {
+                        Post post = new Post();
+                        for (DataSnapshot child : subSnapshot.getChildren())
+                            switch (child.getKey()) {
+                                case "text":
+                                    post.setText(child.getValue().toString());
+                                    break;
+                                case "timestamp":
+                                    post.setTimestamp(child.getValue(Long.class));
+                                    break;
+                                case "writtenBy":
+                                    post.setWrittenBy(child.getValue(User.class));
+                                    break;
+                            }
+                        currentPosts.add(post);
+                    }
+                } catch (Exception e) {
+                    Log.e("Firebase deserialization", "This might be because there are no objects in the database");
+                    Log.e("Firebase error", e.getStackTrace().toString());
+                }
+                Collections.sort(currentPosts, Collections.reverseOrder());
                 posts.setValue(currentPosts);
             }
 

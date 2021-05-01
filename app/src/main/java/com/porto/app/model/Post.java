@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Post implements Comparable {
     private User writtenBy;
     private String text;
-    private LocalDateTime timestamp;
+    private long timestamp;
 
     public Post() {
     }
@@ -40,11 +40,11 @@ public class Post implements Comparable {
         this.text = text;
     }
 
-    public LocalDateTime getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -56,7 +56,7 @@ public class Post implements Comparable {
         Post post = (Post) o;
         return writtenBy.equals(post.writtenBy) &&
                 text.equals(post.text) &&
-                timestamp.compareTo(post.timestamp) == 0;
+                timestamp == post.timestamp;
     }
 
 
@@ -69,6 +69,6 @@ public class Post implements Comparable {
     @Override
     public int compareTo(Object o) {
         Post post = (Post) o;
-        return timestamp.compareTo(post.timestamp);
+        return Long.compare(timestamp, post.timestamp);
     }
 }

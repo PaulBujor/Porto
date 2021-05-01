@@ -59,23 +59,11 @@ public class RegisterFragment extends Fragment {
     }
 
     private void register(View v) {
-        if(passwordConfirm.getText().toString().equals(password.getText().toString())) {
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(task -> {
-                if(task.isSuccessful()) {
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(logInTask -> {
-                        if (logInTask.isSuccessful()) {
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            user.updateProfile(new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(username.getText().toString())
-                                    .build());
-                        }
-                        FirebaseAuth.getInstance().signOut();
-                    });
-                    backToLogin(v);
-                } else {
-                    Log.i("Register", task.getException().getMessage());
-                }
-            });
+        try {
+            mViewModel.register(username.getText().toString(), email.getText().toString(), password.getText().toString(), passwordConfirm.getText().toString());
+            backToLogin(v);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -87,7 +75,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private void backToLogin(View v) {
-        NavHostFragment.findNavController(this).navigate(R.id.closeRegisterAction);
+        NavHostFragment.findNavController(this).popBackStack();
     }
 
 }

@@ -2,14 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_navigation"
     app:startDestination="@id/socialFragment">
 
     <fragment
         android:id="@+id/socialFragment"
         android:name="com.porto.app.ui.social.SocialFragment"
-        android:label="social_fragment"
-        tools:layout="@layout/social_fragment" >
+        tools:layout="@layout/social_fragment"
+        android:label="social_fragment">
         <action
             android:id="@+id/addPostAction"
             app:destination="@id/addPostFragment" />
@@ -17,20 +16,20 @@
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.porto.app.ui.chat.ChatFragment"
-        android:label="chat_fragment"
-        tools:layout="@layout/chat_fragment" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.porto.app.ui.profile.ProfileFragment"
-        android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/chat_fragment"
+        android:label="chat_fragment" />
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.porto.app.ui.addpost.AddPostFragment"
-        android:label="add_post_fragment"
-        tools:layout="@layout/add_post_fragment" >
+        tools:layout="@layout/add_post_fragment"
+        android:label="add_post_fragment">
         <action
             android:id="@+id/backHomeFromCreateAction"
             app:destination="@id/socialFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.porto.app.ui.profile.ProfileFragment"
+        tools:layout="@layout/profile_fragment"
+        android:label="profile_fragment" />
 </navigation>

@@ -14,7 +14,7 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/openHome"
-            app:destination="@id/homeActivity"
+            app:destination="@id/homeFragment"
             app:popUpTo="@id/logInFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -28,9 +28,15 @@
             app:destination="@id/logInFragment"
             app:popUpTo="@id/logInFragment" />
     </fragment>
-    <activity
-        android:id="@+id/homeActivity"
-        android:name="com.porto.app.HomeActivity"
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.porto.app.Home"
         android:label="activity_home"
-        tools:layout="@layout/activity_home" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/logOutAction"
+            app:destination="@id/logInFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

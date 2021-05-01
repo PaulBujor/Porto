@@ -19,7 +19,10 @@ import com.porto.app.model.Like;
 import com.porto.app.model.Post;
 import com.porto.app.repository.LikeRepository;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.TimeZone;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     private List<Post> posts;
@@ -42,6 +45,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.profileImage.setImageResource(R.drawable.ic_profile);
         holder.username.setText(posts.get(position).getWrittenBy().getName());
         holder.postText.setText(posts.get(position).getText());
+        holder.postTimestamp.setText(LocalDateTime.ofInstant(Instant.ofEpochMilli(posts.get(position).getTimestamp()),
+                TimeZone.getDefault().toZoneId()).toString());
 
         LikeRepository likeRepo = LikeRepository.getInstance();
 
@@ -89,6 +94,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         ImageView profileImage;
         TextView username;
         TextView postText;
+        TextView postTimestamp;
 
         ImageButton like;
         ImageButton dislike;
@@ -102,6 +108,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             profileImage = itemView.findViewById(R.id.post_profileImage);
             username = itemView.findViewById(R.id.post_username);
             postText = itemView.findViewById(R.id.post_text);
+            postTimestamp = itemView.findViewById(R.id.post_timestamp);
 
             like = itemView.findViewById(R.id.likeButton);
             dislike = itemView.findViewById(R.id.dislikeButton);
