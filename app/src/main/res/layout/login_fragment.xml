@@ -62,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:text="@string/log"
+                app:icon="@drawable/ic_login"
                 app:iconTint="#FFFFFF" />
 
             <Button

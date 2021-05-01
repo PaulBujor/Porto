@@ -1,18 +1,24 @@
 package com.porto.app.model.adapter;
 
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.porto.app.R;
+import com.porto.app.manager.Model;
+import com.porto.app.model.Like;
 import com.porto.app.model.Post;
+import com.porto.app.repository.LikeRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
@@ -37,7 +43,42 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.username.setText(posts.get(position).getWrittenBy().getName());
         holder.postText.setText(posts.get(position).getText());
 
+        LikeRepository likeRepo = LikeRepository.getInstance();
 
+        Log.i("Default color", holder.like.getBackground().toString());
+
+        holder.like.setOnClickListener(view -> {
+            if (likeRepo.getPostIsLiked(posts.get(position)) == 1)
+                likeRepo.addLike(new Like(posts.get(position), Model.getInstance().getCurrentUser(), 0));
+            else
+                likeRepo.addLike(new Like(posts.get(position), Model.getInstance().getCurrentUser(), 1));
+            updateScore(likeRepo, holder, position);
+        });
+        holder.dislike.setOnClickListener(view -> {
+            if (likeRepo.getPostIsLiked(posts.get(position)) == -1)
+                likeRepo.addLike(new Like(posts.get(position), Model.getInstance().getCurrentUser(), 0));
+            else
+                likeRepo.addLike(new Like(posts.get(position), Model.getInstance().getCurrentUser(), -1));
+            updateScore(likeRepo, holder, position);
+
+        });
+
+        updateScore(likeRepo, holder, position);
+    }
+
+    private void updateScore(LikeRepository likeRepo, ViewHolder holder, int position) {
+        if (likeRepo.getPostIsLiked(posts.get(position)) == 1) {
+            holder.like.setColorFilter(R.color.theme_orange);
+            holder.dislike.clearColorFilter();
+        } else if (likeRepo.getPostIsLiked(posts.get(position)) == -1) {
+            holder.dislike.setColorFilter(R.color.theme_orange);
+            holder.like.clearColorFilter();
+        } else {
+            holder.dislike.clearColorFilter();
+            holder.like.clearColorFilter();
+        }
+
+        holder.score.setText(String.valueOf(likeRepo.getScoreOfPost(posts.get(position))));
     }
 
     public int getItemCount() {
@@ -48,13 +89,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         ImageView profileImage;
         TextView username;
         TextView postText;
+
+        ImageButton like;
+        ImageButton dislike;
         TextView score;
+
+        ImageButton comment;
+        ImageButton share;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             profileImage = itemView.findViewById(R.id.post_profileImage);
             username = itemView.findViewById(R.id.post_username);
             postText = itemView.findViewById(R.id.post_text);
+
+            like = itemView.findViewById(R.id.likeButton);
+            dislike = itemView.findViewById(R.id.dislikeButton);
             score = itemView.findViewById(R.id.post_score);
         }
     }

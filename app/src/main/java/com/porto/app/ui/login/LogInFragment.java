@@ -77,13 +77,17 @@ public class LogInFragment extends Fragment {
     }
 
     private void logIn(View v) {
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Model.getInstance().setFirebaseUser(user);
-                NavHostFragment.findNavController(this).navigate(R.id.openHome);
-            }
-        });
+        try {
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    Model.getInstance().setFirebaseUser(user);
+                    NavHostFragment.findNavController(this).navigate(R.id.openHome);
+                }
+            });
+        } catch (Exception e) {
+            Log.i("Log in", "Email or password are empty");
+        }
     }
 
 }
