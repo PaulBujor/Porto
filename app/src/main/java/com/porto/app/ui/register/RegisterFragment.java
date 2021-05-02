@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.porto.app.R;
+import com.porto.app.dao.UserDao;
 import com.porto.app.manager.Model;
 
 public class RegisterFragment extends Fragment {
@@ -60,8 +61,23 @@ public class RegisterFragment extends Fragment {
 
     private void register(View v) {
         try {
-            mViewModel.register(username.getText().toString(), email.getText().toString(), password.getText().toString(), passwordConfirm.getText().toString());
-            backToLogin(v);
+            if(passwordConfirm.getText().toString().equals(password.getText().toString())) {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(task -> {
+                    if(task.isSuccessful()) {
+                        FirebaseAuth.getInstance().signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(logInTask -> {
+                            if (logInTask.isSuccessful()) {
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                UserDao.getInstance().registerUser(user, username.getText().toString());
+                            }
+                            FirebaseAuth.getInstance().signOut();
+                        });
+                        backToLogin(v);
+                    } else {
+                        Log.i("Register", task.getException().getMessage());
+                    }
+                });
+            } else
+                Log.e("Register", "Passwords do not match");
         } catch (Exception e) {
             e.printStackTrace();
         }

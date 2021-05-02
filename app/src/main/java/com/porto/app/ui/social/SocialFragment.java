@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.porto.app.R;
 import com.porto.app.model.Post;
 import com.porto.app.model.adapter.PostAdapter;
+import com.porto.app.model.holder.PostHolder;
 
 import java.util.List;
 
@@ -58,9 +59,9 @@ public class SocialFragment extends Fragment {
         mViewModel.getPosts().observe(getViewLifecycleOwner(), postsObserver);
     }
 
-    Observer<List<Post>> postsObserver = new Observer<List<Post>>() {
+    Observer<List<PostHolder>> postsObserver = new Observer<List<PostHolder>>() {
         @Override
-        public void onChanged(List<Post> posts) {
+        public void onChanged(List<PostHolder> posts) {
             PostAdapter adapter = new PostAdapter(posts);
             postList.setLayoutManager(new LinearLayoutManager(getContext()));
             postList.setAdapter(adapter);

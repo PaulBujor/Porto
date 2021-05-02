@@ -40,6 +40,7 @@ public class Model {
     public void setFirebaseUser(FirebaseUser firebaseUser) {
         this.firebaseUser = firebaseUser;
         currentUser = new User();
-        currentUser.setName(firebaseUser.getDisplayName());
+        currentUser.setUsername(firebaseUser.getDisplayName());
+        currentUser.setUID(firebaseUser.getUid());
     }
 }

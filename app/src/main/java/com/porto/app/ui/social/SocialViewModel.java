@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.porto.app.model.Post;
+import com.porto.app.model.holder.PostHolder;
 import com.porto.app.repository.PostRepository;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class SocialViewModel extends ViewModel {
 
     }
 
-    public LiveData<List<Post>> getPosts() {
+    public LiveData<List<PostHolder>> getPosts() {
         return PostRepository.getInstance().getAllPosts();
     }
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import com.porto.app.dao.PostDao;
 import com.porto.app.model.Post;
+import com.porto.app.model.holder.PostHolder;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class PostRepository {
         return instance;
     }
 
-    public LiveData<List<Post>> getAllPosts() {
+    public LiveData<List<PostHolder>> getAllPosts() {
         return postDao.getAllPosts();
     }
 

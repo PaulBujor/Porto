@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.porto.app.model.Post;
 import com.porto.app.model.User;
+import com.porto.app.model.holder.PostHolder;
 import com.porto.app.repository.PostRepository;
 
 import java.time.LocalDateTime;
@@ -22,7 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class PostDao {
-    private MutableLiveData<List<Post>> posts;
+    private MutableLiveData<List<PostHolder>> posts;
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("porto-social-app-default-rtdb");
@@ -35,12 +36,15 @@ public class PostDao {
         ref.child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Post> currentPosts = new ArrayList<>();
+                List<PostHolder> currentPosts = new ArrayList<>();
                 try {
                     DataSnapshot subSnapshot;
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
                     while(null != (subSnapshot = iterator.next())) {
+                        PostHolder postHolder = new PostHolder();
+                        postHolder.setPostUID(subSnapshot.getKey());
                         Post post = new Post();
+                        postHolder.setPost(post);
                         for (DataSnapshot child : subSnapshot.getChildren())
                             switch (child.getKey()) {
                                 case "text":
@@ -50,10 +54,12 @@ public class PostDao {
                                     post.setTimestamp(child.getValue(Long.class));
                                     break;
                                 case "writtenBy":
-                                    post.setWrittenBy(child.getValue(User.class));
+                                    User user = child.getValue(User.class);
+                                    user.setUsername(UserDao.getInstance().getUserName(user.getUID()).getValue());
+                                    post.setWrittenBy(user);
                                     break;
                             }
-                        currentPosts.add(post);
+                        currentPosts.add(postHolder);
                     }
                 } catch (Exception e) {
                     Log.e("Firebase deserialization", "This might be because there are no objects in the database");
@@ -81,7 +87,7 @@ public class PostDao {
         return instance;
     }
 
-    public LiveData<List<Post>> getAllPosts() {
+    public LiveData<List<PostHolder>> getAllPosts() {
         return posts;
     }
 

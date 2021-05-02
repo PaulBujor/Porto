@@ -67,7 +67,7 @@ public class AddPostFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(AddPostViewModel.class);
-        profileName.setText(mViewModel.getUser().getName());
+        profileName.setText(mViewModel.getUser().getUsername());
         // TODO: Use the ViewModel
     }
 

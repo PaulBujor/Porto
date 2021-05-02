@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +62,7 @@ public class ProfileFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         // TODO: Use the ViewModel
 
-        name.setText(mViewModel.getUser().getName());
+        name.setText(mViewModel.getUser().getUsername());
     }
 
 }
