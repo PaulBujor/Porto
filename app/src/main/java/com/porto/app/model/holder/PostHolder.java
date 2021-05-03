@@ -4,7 +4,7 @@ import com.porto.app.model.Post;
 
 import java.util.Objects;
 
-public class PostHolder {
+public class PostHolder implements Comparable{
     private String postUID;
     private Post post;
 
@@ -43,5 +43,11 @@ public class PostHolder {
     @Override
     public int hashCode() {
         return Objects.hash(postUID);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        PostHolder post = (PostHolder) o;
+        return Long.compare(this.post.getTimestamp(), post.post.getTimestamp());
     }
 }

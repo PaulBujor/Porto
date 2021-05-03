@@ -62,6 +62,11 @@ public class LogInFragment extends Fragment {
         email = view.findViewById(R.id.login_emailField);
         password = view.findViewById(R.id.login_passwordField);
 
+        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Model.getInstance().setFirebaseUser(FirebaseAuth.getInstance().getCurrentUser());
+            NavHostFragment.findNavController(this).navigate(R.id.openHome);
+        }
+
         return view;
     }
 

@@ -67,7 +67,6 @@ public class Post implements Comparable {
         return Objects.hash(writtenBy, text, timestamp);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public int compareTo(Object o) {
         Post post = (Post) o;

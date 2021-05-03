@@ -3,8 +3,11 @@ package com.porto.app.dao;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.porto.app.model.Post;
 import com.porto.app.model.User;
+import com.porto.app.model.adapter.PostAdapter;
 import com.porto.app.model.holder.PostHolder;
 import com.porto.app.repository.PostRepository;
 
@@ -55,7 +59,15 @@ public class PostDao {
                                     break;
                                 case "writtenBy":
                                     User user = child.getValue(User.class);
-                                    user.setUsername(UserDao.getInstance().getUserName(user.getUID()).getValue());
+
+                                    Observer<String> postsObserver = new Observer<String>() {
+                                        @Override
+                                        public void onChanged(String name) {
+                                            user.setUsername(name);
+                                        }
+                                    };
+                                    //UserDao.getInstance().getUserName(user.getUID()).;
+
                                     post.setWrittenBy(user);
                                     break;
                             }
