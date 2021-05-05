@@ -1,6 +1,9 @@
 package com.porto.app.manager;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.google.firebase.auth.FirebaseUser;
+import com.porto.app.dao.UserDao;
 import com.porto.app.model.User;
 
 public class Model {
@@ -38,9 +41,15 @@ public class Model {
     }
 
     public void setFirebaseUser(FirebaseUser firebaseUser) {
+        MutableLiveData<String> currentUserUsername = new MutableLiveData<>();
+        currentUserUsername.setValue("");
         this.firebaseUser = firebaseUser;
         currentUser = new User();
-        currentUser.setUsername(firebaseUser.getDisplayName());
         currentUser.setUID(firebaseUser.getUid());
+
+        currentUserUsername = UserDao.getInstance().getUserName(currentUser.getUID());
+        currentUserUsername.observeForever((username) -> {
+            currentUser.setUsername(username);
+        });
     }
 }

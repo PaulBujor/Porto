@@ -1,14 +1,17 @@
 package com.porto.app.model.holder;
 
 import com.porto.app.model.Post;
+import com.porto.app.model.User;
 
 import java.util.Objects;
 
 public class PostHolder implements Comparable{
     private String postUID;
+    private UserAlt altUser;
     private Post post;
 
     public PostHolder() {
+
     }
 
     public PostHolder(String postUID, Post post) {
@@ -30,6 +33,14 @@ public class PostHolder implements Comparable{
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public UserAlt getAltUser() {
+        return altUser;
+    }
+
+    public void setAltUser(UserAlt altUser) {
+        this.altUser = altUser;
     }
 
     @Override

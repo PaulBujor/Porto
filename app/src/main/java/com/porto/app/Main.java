@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
 import com.porto.app.ui.login.LogInFragment;
 
 public class Main extends AppCompatActivity {
@@ -15,6 +17,8 @@ public class Main extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);

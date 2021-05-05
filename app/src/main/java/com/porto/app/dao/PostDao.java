@@ -13,11 +13,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
 import com.google.firebase.database.ValueEventListener;
 import com.porto.app.model.Post;
 import com.porto.app.model.User;
 import com.porto.app.model.adapter.PostAdapter;
 import com.porto.app.model.holder.PostHolder;
+import com.porto.app.model.holder.UserAlt;
 import com.porto.app.repository.PostRepository;
 
 import java.time.LocalDateTime;
@@ -30,12 +32,14 @@ public class PostDao {
     private MutableLiveData<List<PostHolder>> posts;
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("porto-social-app-default-rtdb");
+    DatabaseReference ref;
 
     private static PostDao instance;
     private static Object lock = new Object();
 
     private PostDao() {
+        ref = database.getReference("porto-social-app-default-rtdb");
+
         posts = new MutableLiveData<>();
         ref.child("posts").addValueEventListener(new ValueEventListener() {
             @Override
@@ -47,6 +51,7 @@ public class PostDao {
                     while(null != (subSnapshot = iterator.next())) {
                         PostHolder postHolder = new PostHolder();
                         postHolder.setPostUID(subSnapshot.getKey());
+                        postHolder.setAltUser(new UserAlt());
                         Post post = new Post();
                         postHolder.setPost(post);
                         for (DataSnapshot child : subSnapshot.getChildren())
@@ -59,16 +64,9 @@ public class PostDao {
                                     break;
                                 case "writtenBy":
                                     User user = child.getValue(User.class);
-
-                                    Observer<String> postsObserver = new Observer<String>() {
-                                        @Override
-                                        public void onChanged(String name) {
-                                            user.setUsername(name);
-                                        }
-                                    };
-                                    //UserDao.getInstance().getUserName(user.getUID()).;
-
                                     post.setWrittenBy(user);
+                                    postHolder.getAltUser().setUID(user.getUID());
+                                    postHolder.getAltUser().setUsername(UserDao.getInstance().getUserName(user.getUID()));
                                     break;
                             }
                         currentPosts.add(postHolder);

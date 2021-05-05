@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,13 +42,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.post_item, parent, false);
+
         return new ViewHolder(view);
     }
 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.profileImage.setImageResource(R.drawable.ic_profile);
         //todo
-        holder.username.setText(posts.get(position).getPost().getWrittenBy().getUsername());
+
+        posts.get(position).getAltUser().getUsername().observeForever((username) -> {
+            holder.username.setText(username);
+        });
+        holder.username.setText(posts.get(position).getAltUser().getUsername().getValue());
         holder.postText.setText(posts.get(position).getPost().getText());
         holder.postTimestamp.setText(LocalDateTime.ofInstant(Instant.ofEpochMilli(posts.get(position).getPost().getTimestamp()),
                 TimeZone.getDefault().toZoneId()).toString());

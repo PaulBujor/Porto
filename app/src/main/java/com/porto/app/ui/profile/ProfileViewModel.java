@@ -6,14 +6,7 @@ import com.porto.app.manager.Model;
 import com.porto.app.model.User;
 
 public class ProfileViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
-    private User user;
-
-    public ProfileViewModel() {
-        user = Model.getInstance().getCurrentUser();
-    }
-
     public User getUser() {
-        return user;
+        return Model.getInstance().getCurrentUser();
     }
 }
