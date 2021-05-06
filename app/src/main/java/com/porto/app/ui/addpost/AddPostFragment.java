@@ -38,8 +38,6 @@ public class AddPostFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_post_fragment, container, false);
-        backButton = view.findViewById(R.id.createPost_back);
-        backButton.setOnClickListener(v -> goBack(v));
 
         addPostButton = view.findViewById(R.id.addPostButton);
         addPostButton.setOnClickListener(v -> addPost(v));
@@ -54,10 +52,6 @@ public class AddPostFragment extends Fragment {
         return view;
     }
 
-    private void goBack(View v) {
-        NavHostFragment.findNavController(this).popBackStack();
-    }
-
     private void addPost(View v) {
         mViewModel.addPost(new Post(textField.getText().toString()));
         NavHostFragment.findNavController(this).popBackStack();
@@ -67,7 +61,9 @@ public class AddPostFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(AddPostViewModel.class);
-        profileName.setText(mViewModel.getUser().getUsername());
+        mViewModel.getUser().getUsername().observeForever(username -> {
+            profileName.setText(username);
+        });
         // TODO: Use the ViewModel
     }
 

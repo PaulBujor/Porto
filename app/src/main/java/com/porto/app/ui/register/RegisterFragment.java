@@ -23,6 +23,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.porto.app.R;
 import com.porto.app.dao.UserDao;
 import com.porto.app.manager.Model;
+import com.porto.app.repository.UserRepository;
 
 public class RegisterFragment extends Fragment {
     private ImageButton backButton;
@@ -67,7 +68,7 @@ public class RegisterFragment extends Fragment {
                         FirebaseAuth.getInstance().signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(logInTask -> {
                             if (logInTask.isSuccessful()) {
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                UserDao.getInstance().registerUser(user, username.getText().toString());
+                                mViewModel.registerUser(user, username.getText().toString());
                             }
                             FirebaseAuth.getInstance().signOut();
                         });

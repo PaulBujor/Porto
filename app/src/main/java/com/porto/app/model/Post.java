@@ -10,27 +10,22 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Post implements Comparable {
-    private User writtenBy;
+    private String writtenBy;
     private String text;
     private long timestamp;
 
     public Post() {
     }
 
-    public Post(User writtenBy, String text) {
-        this.writtenBy = writtenBy;
-        this.text = text;
-    }
-
     public Post(String text) {
         this.text = text;
     }
 
-    public User getWrittenBy() {
+    public String getWrittenBy() {
         return writtenBy;
     }
 
-    public void setWrittenBy(User writtenBy) {
+    public void setWrittenBy(String writtenBy) {
         this.writtenBy = writtenBy;
     }
 

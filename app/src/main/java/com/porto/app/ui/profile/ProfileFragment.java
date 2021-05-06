@@ -62,7 +62,9 @@ public class ProfileFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         // TODO: Use the ViewModel
 
-        name.setText(mViewModel.getUser().getUsername());
+        mViewModel.getUser().getUsername().observeForever(username -> {
+            name.setText(username);
+        });
     }
 
 }

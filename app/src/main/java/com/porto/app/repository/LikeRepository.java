@@ -10,6 +10,7 @@ import com.porto.app.dao.PostDao;
 import com.porto.app.manager.Model;
 import com.porto.app.model.Like;
 import com.porto.app.model.Post;
+import com.porto.app.model.holder.PostHolder;
 
 import java.util.List;
 
@@ -34,15 +35,15 @@ public class LikeRepository {
         return instance;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public int getScoreOfPost(Post post) {
-        return likeDao.getScoreOfPost(post);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public int getPostIsLiked(Post post) {
-        return likeDao.getPostIsLiked(post);
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public int getScoreOfPost(PostHolder post) {
+//        return likeDao.getScoreOfPost(post);
+//    }
+//
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public int getPostIsLiked(PostHolder post) {
+//        return likeDao.getPostIsLiked(post);
+//    }
 
     public void addLike(Like like) {
         likeDao.addLike(like);

@@ -36,7 +36,7 @@ public class UserDao {
         return instance;
     }
 
-    public MutableLiveData<String> getUserName(String UID) {
+    public MutableLiveData<String> getUsername(String UID) {
         MutableLiveData<String> username = new MutableLiveData<>();
         ref.child("users").child(UID).get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
@@ -44,17 +44,16 @@ public class UserDao {
             }
             else {
                 username.setValue(String.valueOf(task.getResult().getValue()));
-                Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                Log.d("firebase username", String.valueOf(task.getResult().getValue()));
             }
         });
-        Log.i("Username", "Received username " + username.getValue());
         return username;
     }
 
     public void registerUser(FirebaseUser firebaseUser, String username) {
-        User user = new User();
+        User user = new User(firebaseUser.getUid(), username);
         user.setUsername(username);
         user.setUID(firebaseUser.getUid());
-        ref.child("users").child(user.getUID()).setValue(user.getUsername());
+        ref.child("users").child(user.getUID()).setValue(user.getUsername().getValue());
     }
 }

@@ -3,26 +3,20 @@ package com.porto.app.dao;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Logger;
 import com.google.firebase.database.ValueEventListener;
 import com.porto.app.model.Post;
 import com.porto.app.model.User;
-import com.porto.app.model.adapter.PostAdapter;
 import com.porto.app.model.holder.PostHolder;
-import com.porto.app.model.holder.UserAlt;
-import com.porto.app.repository.PostRepository;
+import com.porto.app.repository.UserRepository;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -48,12 +42,15 @@ public class PostDao {
                 try {
                     DataSnapshot subSnapshot;
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
+
+                    //iterate through all elements from posts tree
                     while(null != (subSnapshot = iterator.next())) {
-                        PostHolder postHolder = new PostHolder();
-                        postHolder.setPostUID(subSnapshot.getKey());
-                        postHolder.setAltUser(new UserAlt());
+                        PostHolder postHolder = new PostHolder(subSnapshot.getKey());
+
+                        //keep reference to post as it is updated with data
                         Post post = new Post();
                         postHolder.setPost(post);
+
                         for (DataSnapshot child : subSnapshot.getChildren())
                             switch (child.getKey()) {
                                 case "text":
@@ -63,10 +60,11 @@ public class PostDao {
                                     post.setTimestamp(child.getValue(Long.class));
                                     break;
                                 case "writtenBy":
-                                    User user = child.getValue(User.class);
-                                    post.setWrittenBy(user);
-                                    postHolder.getAltUser().setUID(user.getUID());
-                                    postHolder.getAltUser().setUsername(UserDao.getInstance().getUserName(user.getUID()));
+                                    User user = new User();
+                                    user.setUID(String.valueOf(child.getValue()));
+                                    user.setUsername(UserRepository.getInstance().getUsername(user.getUID()));
+                                    post.setWrittenBy(user.getUID());
+                                    postHolder.setWrittenBy(user);
                                     break;
                             }
                         currentPosts.add(postHolder);

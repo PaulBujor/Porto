@@ -63,8 +63,7 @@ public class LogInFragment extends Fragment {
         password = view.findViewById(R.id.login_passwordField);
 
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Model.getInstance().setFirebaseUser(FirebaseAuth.getInstance().getCurrentUser());
-            NavHostFragment.findNavController(this).navigate(R.id.openHome);
+            logInUser(FirebaseAuth.getInstance().getCurrentUser());
         }
 
         return view;
@@ -87,13 +86,22 @@ public class LogInFragment extends Fragment {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            Model.getInstance().setFirebaseUser(user);
-                            NavHostFragment.findNavController(this).navigate(R.id.openHome);
+                            logInUser(user);
                         }
                     });
         } catch (Exception e) {
             Log.i("Log in", "Email or password are empty");
         }
+    }
+
+    private void logInUser(FirebaseUser user) {
+        try {
+            mViewModel.logInUser(user);
+        } catch (NullPointerException e) {
+            mViewModel = new ViewModelProvider(this).get(LogInViewModel.class);
+            mViewModel.logInUser(user);
+        }
+        NavHostFragment.findNavController(this).navigate(R.id.openHome);
     }
 
 }

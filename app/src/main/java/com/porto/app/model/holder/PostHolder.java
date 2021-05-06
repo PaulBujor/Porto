@@ -7,16 +7,15 @@ import java.util.Objects;
 
 public class PostHolder implements Comparable{
     private String postUID;
-    private UserAlt altUser;
     private Post post;
+    private User writtenBy;
 
     public PostHolder() {
 
     }
 
-    public PostHolder(String postUID, Post post) {
+    public PostHolder(String postUID) {
         this.postUID = postUID;
-        this.post = post;
     }
 
     public String getPostUID() {
@@ -35,12 +34,12 @@ public class PostHolder implements Comparable{
         this.post = post;
     }
 
-    public UserAlt getAltUser() {
-        return altUser;
+    public User getWrittenBy() {
+        return writtenBy;
     }
 
-    public void setAltUser(UserAlt altUser) {
-        this.altUser = altUser;
+    public void setWrittenBy(User writtenBy) {
+        this.writtenBy = writtenBy;
     }
 
     @Override

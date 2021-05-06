@@ -8,28 +8,28 @@
         android:id="@+id/socialFragment"
         android:name="com.porto.app.ui.social.SocialFragment"
         tools:layout="@layout/social_fragment"
-        android:label="social_fragment">
+        android:label="Feed">
         <action
             android:id="@+id/addPostAction"
-            app:destination="@id/addPostFragment" />
+            app:destination="@id/addPostFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.porto.app.ui.chat.ChatFragment"
         tools:layout="@layout/chat_fragment"
-        android:label="chat_fragment" />
+        android:label="Chat" />
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.porto.app.ui.addpost.AddPostFragment"
         tools:layout="@layout/add_post_fragment"
-        android:label="add_post_fragment">
-        <action
-            android:id="@+id/backHomeFromCreateAction"
-            app:destination="@id/socialFragment" />
-    </fragment>
+        android:label="Add a post"/>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.porto.app.ui.profile.ProfileFragment"
         tools:layout="@layout/profile_fragment"
-        android:label="profile_fragment" />
+        android:label="Your profile" />
 </navigation>

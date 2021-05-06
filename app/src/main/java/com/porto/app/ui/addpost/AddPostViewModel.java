@@ -19,7 +19,7 @@ public class AddPostViewModel extends ViewModel {
     }
 
     public void addPost(Post post) {
-        post.setWrittenBy(Model.getInstance().getCurrentUser());
+        post.setWrittenBy(Model.getInstance().getCurrentUser().getUID());
         post.setTimestamp(System.currentTimeMillis());
         PostRepository.getInstance().addPost(post);
     }

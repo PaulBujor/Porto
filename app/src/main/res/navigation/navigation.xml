@@ -11,10 +11,18 @@
         tools:layout="@layout/login_fragment" >
         <action
             android:id="@+id/openRegisterAction"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
         <action
             android:id="@+id/openHome"
             app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@id/logInFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -23,10 +31,6 @@
         android:name="com.porto.app.ui.register.RegisterFragment"
         android:label="register_fragment"
         tools:layout="@layout/register_fragment" >
-        <action
-            android:id="@+id/closeRegisterAction"
-            app:destination="@id/logInFragment"
-            app:popUpTo="@id/logInFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -37,6 +41,8 @@
             android:id="@+id/logOutAction"
             app:destination="@id/logInFragment"
             app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:popEnterAnim="@anim/fragment_fade_enter"/>
     </fragment>
 </navigation>

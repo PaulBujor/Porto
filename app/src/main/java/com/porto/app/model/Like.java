@@ -1,33 +1,35 @@
 package com.porto.app.model;
 
+import java.util.Objects;
+
 public class Like {
-    private Post ofPost;
-    private User fromUser;
+    private String postId;
+    private String userId;
     private int value;
 
     public Like() {
     }
 
-    public Like(Post ofPost, User fromUser, int value) {
-        this.ofPost = ofPost;
-        this.fromUser = fromUser;
+    public Like(String postId, String userId, int value) {
+        this.postId = postId;
+        this.userId = userId;
         this.value = value;
     }
 
-    public Post getOfPost() {
-        return ofPost;
+    public String getPostId() {
+        return postId;
     }
 
-    public void setOfPost(Post ofPost) {
-        this.ofPost = ofPost;
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
-    public User getFromUser() {
-        return fromUser;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setFromUser(User fromUser) {
-        this.fromUser = fromUser;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public int getValue() {
@@ -36,5 +38,19 @@ public class Like {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Like like = (Like) o;
+        return Objects.equals(postId, like.postId) &&
+                Objects.equals(userId, like.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(postId, userId);
     }
 }

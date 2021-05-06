@@ -9,17 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.porto.app.R;
-import com.porto.app.dao.UserDao;
+import com.porto.app.dao.LikeDao;
 import com.porto.app.manager.Model;
 import com.porto.app.model.Like;
-import com.porto.app.model.Post;
 import com.porto.app.model.holder.PostHolder;
 import com.porto.app.repository.LikeRepository;
 
@@ -50,10 +45,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.profileImage.setImageResource(R.drawable.ic_profile);
         //todo
 
-        posts.get(position).getAltUser().getUsername().observeForever((username) -> {
+        posts.get(position).getWrittenBy().getUsername().observeForever((username) -> {
             holder.username.setText(username);
         });
-        holder.username.setText(posts.get(position).getAltUser().getUsername().getValue());
         holder.postText.setText(posts.get(position).getPost().getText());
         holder.postTimestamp.setText(LocalDateTime.ofInstant(Instant.ofEpochMilli(posts.get(position).getPost().getTimestamp()),
                 TimeZone.getDefault().toZoneId()).toString());
@@ -62,39 +56,72 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         Log.i("Default color", holder.like.getBackground().toString());
 
-        Post post = posts.get(position).getPost();
-        holder.like.setOnClickListener(view -> {
-            if (likeRepo.getPostIsLiked(post) == 1)
-                likeRepo.addLike(new Like(post, Model.getInstance().getCurrentUser(), 0));
-            else
-                likeRepo.addLike(new Like(post, Model.getInstance().getCurrentUser(), 1));
-            updateScore(likeRepo, holder, position);
-        });
-        holder.dislike.setOnClickListener(view -> {
-            if (likeRepo.getPostIsLiked(post) == -1)
-                likeRepo.addLike(new Like(post, Model.getInstance().getCurrentUser(), 0));
-            else
-                likeRepo.addLike(new Like(post, Model.getInstance().getCurrentUser(), -1));
-            updateScore(likeRepo, holder, position);
-
-        });
-
-        updateScore(likeRepo, holder, position);
+        //setButtonListeners(likeRepo, holder, position);
+        setAutoUpdateScore(holder, position);
     }
 
-    private void updateScore(LikeRepository likeRepo, ViewHolder holder, int position) {
-        if (likeRepo.getPostIsLiked(posts.get(position).getPost()) == 1) {
-            holder.like.setColorFilter(R.color.theme_orange);
-            holder.dislike.clearColorFilter();
-        } else if (likeRepo.getPostIsLiked(posts.get(position).getPost()) == -1) {
-            holder.dislike.setColorFilter(R.color.theme_orange);
-            holder.like.clearColorFilter();
-        } else {
-            holder.dislike.clearColorFilter();
-            holder.like.clearColorFilter();
-        }
+//    private void setButtonListeners(LikeRepository likeRepo, ViewHolder holder, int position) {
+//        PostHolder post = posts.get(position);
+//        holder.like.setOnClickListener(view -> {
+//            if (likeRepo.getPostIsLiked(post) == 1)
+//                likeRepo.addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
+//            else
+//                likeRepo.addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 1));
+//        });
+//        holder.dislike.setOnClickListener(view -> {
+//            if (likeRepo.getPostIsLiked(post) == -1)
+//                likeRepo.addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
+//            else
+//                likeRepo.addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), -1));
+//
+//        });
+//    }
 
-        holder.score.setText(String.valueOf(likeRepo.getScoreOfPost(posts.get(position).getPost())));
+    private void setAutoUpdateScore(ViewHolder holder, int position) {
+        LikeDao.getInstance().getLiveLikesOfPost(posts.get(position)).observeForever(likes -> {
+            int sumOfLikes = 0;
+            boolean postLikedByUser = false, postDislikedByUser = false;
+            PostHolder post = posts.get(position);
+
+            for(Like like : likes) {
+                if (like.getUserId().equals(Model.getInstance().getCurrentUser().getUID())) {
+                    if(like.getValue() == 1)
+                        postLikedByUser = true;
+                    else if (like.getValue() == -1)
+                        postDislikedByUser = true;
+                }
+                sumOfLikes += like.getValue();
+            }
+            holder.score.setText(String.valueOf(sumOfLikes));
+
+            if (postLikedByUser) {
+                holder.like.setColorFilter(R.color.theme_orange);
+                holder.dislike.clearColorFilter();
+            } else if (postDislikedByUser) {
+                holder.dislike.setColorFilter(R.color.theme_orange);
+                holder.like.clearColorFilter();
+            } else {
+                holder.dislike.clearColorFilter();
+                holder.like.clearColorFilter();
+            }
+
+            boolean finalPostLikedByUser = postLikedByUser;
+            boolean finalPostDislikedByUser = postDislikedByUser;
+
+            holder.like.setOnClickListener(view -> {
+                if (finalPostLikedByUser)
+                    LikeDao.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
+                else
+                    LikeDao.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 1));
+            });
+
+            holder.dislike.setOnClickListener(view -> {
+                if (finalPostDislikedByUser)
+                    LikeDao.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
+                else
+                    LikeDao.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), -1));
+            });
+        });
     }
 
     public int getItemCount() {
