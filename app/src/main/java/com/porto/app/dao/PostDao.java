@@ -6,15 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.porto.app.model.Post;
-import com.porto.app.model.User;
-import com.porto.app.model.holder.PostHolder;
+import com.porto.app.model.models.Post;
+import com.porto.app.model.models.User;
+import com.porto.app.model.models.holder.PostHolder;
 import com.porto.app.repository.UserRepository;
 
 import java.util.ArrayList;

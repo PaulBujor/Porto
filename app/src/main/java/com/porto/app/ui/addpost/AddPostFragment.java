@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.porto.app.R;
-import com.porto.app.model.Post;
+import com.porto.app.model.models.Post;
 
 public class AddPostFragment extends Fragment {
     private ImageView profile;

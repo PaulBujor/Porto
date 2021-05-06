@@ -19,11 +19,7 @@ import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.porto.app.R;
-import com.porto.app.dao.UserDao;
-import com.porto.app.manager.Model;
-import com.porto.app.repository.UserRepository;
 
 public class RegisterFragment extends Fragment {
     private ImageButton backButton;

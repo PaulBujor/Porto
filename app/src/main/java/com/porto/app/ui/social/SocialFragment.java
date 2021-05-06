@@ -18,9 +18,8 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.porto.app.R;
-import com.porto.app.model.Post;
 import com.porto.app.model.adapter.PostAdapter;
-import com.porto.app.model.holder.PostHolder;
+import com.porto.app.model.models.holder.PostHolder;
 
 import java.util.List;
 

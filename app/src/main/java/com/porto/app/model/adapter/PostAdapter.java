@@ -12,10 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.porto.app.R;
-import com.porto.app.dao.LikeDao;
-import com.porto.app.manager.Model;
-import com.porto.app.model.Like;
-import com.porto.app.model.holder.PostHolder;
+import com.porto.app.model.Model;
+import com.porto.app.model.models.Like;
+import com.porto.app.model.models.holder.PostHolder;
 import com.porto.app.repository.LikeRepository;
 
 import java.time.Instant;
@@ -56,29 +55,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         Log.i("Default color", holder.like.getBackground().toString());
 
-        //setButtonListeners(likeRepo, holder, position);
         setAutoUpdateScore(holder, position);
     }
 
-//    private void setButtonListeners(LikeRepository likeRepo, ViewHolder holder, int position) {
-//        PostHolder post = posts.get(position);
-//        holder.like.setOnClickListener(view -> {
-//            if (likeRepo.getPostIsLiked(post) == 1)
-//                likeRepo.addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
-//            else
-//                likeRepo.addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 1));
-//        });
-//        holder.dislike.setOnClickListener(view -> {
-//            if (likeRepo.getPostIsLiked(post) == -1)
-//                likeRepo.addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
-//            else
-//                likeRepo.addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), -1));
-//
-//        });
-//    }
-
     private void setAutoUpdateScore(ViewHolder holder, int position) {
-        LikeDao.getInstance().getLiveLikesOfPost(posts.get(position)).observeForever(likes -> {
+        LikeRepository.getInstance().getLiveLikesOfPost(posts.get(position)).observeForever(likes -> {
             int sumOfLikes = 0;
             boolean postLikedByUser = false, postDislikedByUser = false;
             PostHolder post = posts.get(position);
@@ -110,16 +91,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             holder.like.setOnClickListener(view -> {
                 if (finalPostLikedByUser)
-                    LikeDao.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
+                    LikeRepository.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
                 else
-                    LikeDao.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 1));
+                    LikeRepository.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 1));
             });
 
             holder.dislike.setOnClickListener(view -> {
                 if (finalPostDislikedByUser)
-                    LikeDao.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
+                    LikeRepository.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), 0));
                 else
-                    LikeDao.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), -1));
+                    LikeRepository.getInstance().addLike(new Like(post.getPostUID(), Model.getInstance().getCurrentUser().getUID(), -1));
             });
         });
     }

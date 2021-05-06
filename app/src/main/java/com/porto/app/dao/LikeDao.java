@@ -1,18 +1,13 @@
 package com.porto.app.dao;
 
-import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.porto.app.manager.Model;
-import com.porto.app.model.Like;
-import com.porto.app.model.Post;
-import com.porto.app.model.holder.PostHolder;
+import com.porto.app.model.Model;
+import com.porto.app.model.models.Like;
+import com.porto.app.model.models.holder.PostHolder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,36 +55,6 @@ public class LikeDao {
 
     public LiveData<List<Like>> getLiveLikesOfPost(PostHolder post) {
         return checkPostExists(post);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public int getScoreOfPost(PostHolder post) {
-        int score = 0;
-        try {
-            for (Like like : likes.getValue()) {
-                if (post.getPostUID().equals(like.getPostId()))
-                    score += like.getValue();
-            }
-        } catch (NullPointerException e) {
-            Log.d("LikeDao", "No likes for post " + post.getPostUID());
-        }
-        Log.d("LikeDao", "Score of post " + post.getPostUID() + ": " + score);
-        return score;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public int getPostIsLiked(PostHolder post) {
-        try {
-            for (Like like : likes.getValue()) {
-                if (post.getPostUID().equals(like.getPostId()) && like.getUserId().equals(Model.getInstance().getCurrentUser().getUID())) {
-                    Log.d("LikeDao", "Post " + post.getPostUID() + ": Like by " + Model.getInstance().getCurrentUser().getUID());
-                    return like.getValue();
-                }
-            }
-        } catch (NullPointerException e) {
-            Log.d("LikeDao", "No likes for post " + post.getPostUID());
-        }
-        return 0;
     }
 
     public void addLike(Like like) {

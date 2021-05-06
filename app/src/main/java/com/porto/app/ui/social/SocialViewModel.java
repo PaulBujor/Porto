@@ -3,8 +3,7 @@ package com.porto.app.ui.social;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.porto.app.model.Post;
-import com.porto.app.model.holder.PostHolder;
+import com.porto.app.model.models.holder.PostHolder;
 import com.porto.app.repository.PostRepository;
 
 import java.util.List;

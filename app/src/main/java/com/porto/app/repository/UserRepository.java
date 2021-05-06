@@ -1,18 +1,9 @@
 package com.porto.app.repository;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseUser;
-import com.porto.app.dao.PostDao;
 import com.porto.app.dao.UserDao;
-import com.porto.app.model.Post;
-import com.porto.app.model.User;
-import com.porto.app.model.holder.PostHolder;
-
-import java.util.List;
 
 public class UserRepository {
     private UserDao userDao;
