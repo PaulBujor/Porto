@@ -1,5 +1,6 @@
 package com.porto.app.model.adapter;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,10 +79,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             holder.score.setText(String.valueOf(sumOfLikes));
 
             if (postLikedByUser) {
-                holder.like.setColorFilter(R.color.theme_orange);
+                holder.like.setColorFilter(Color.argb(255, 0, 173, 60));
                 holder.dislike.clearColorFilter();
             } else if (postDislikedByUser) {
-                holder.dislike.setColorFilter(R.color.theme_orange);
+                holder.dislike.setColorFilter(Color.argb(255, 250, 58, 50));
                 holder.like.clearColorFilter();
             } else {
                 holder.dislike.clearColorFilter();
