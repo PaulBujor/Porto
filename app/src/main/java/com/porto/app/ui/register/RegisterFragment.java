@@ -66,7 +66,6 @@ public class RegisterFragment extends Fragment {
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 mViewModel.registerUser(user, username.getText().toString());
                             }
-                            FirebaseAuth.getInstance().signOut();
                         });
                         backToLogin(v);
                     } else {
