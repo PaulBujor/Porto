@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import com.porto.app.dao.LikeDao;
 import com.porto.app.model.models.Like;
+import com.porto.app.model.models.holder.LikeHolder;
 import com.porto.app.model.models.holder.PostHolder;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class LikeRepository {
         return instance;
     }
 
-    public LiveData<List<Like>> getLiveLikesOfPost(PostHolder post) {
+    public LiveData<List<LikeHolder>> getLiveLikesOfPost(PostHolder post) {
         return likeDao.getLiveLikesOfPost(post);
     }
 

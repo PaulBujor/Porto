@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.porto.app.R;
 import com.porto.app.model.Model;
 import com.porto.app.model.models.Like;
+import com.porto.app.model.models.holder.LikeHolder;
 import com.porto.app.model.models.holder.PostHolder;
 import com.porto.app.repository.LikeRepository;
 
@@ -64,7 +65,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             boolean postLikedByUser = false, postDislikedByUser = false;
             PostHolder post = posts.get(position);
 
-            for(Like like : likes) {
+            for(LikeHolder likeHolder : likes) {
+                Like like = likeHolder.getLike();
                 if (like.getUserId().equals(Model.getInstance().getCurrentUser().getUID())) {
                     if(like.getValue() == 1)
                         postLikedByUser = true;

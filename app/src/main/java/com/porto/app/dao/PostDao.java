@@ -24,8 +24,8 @@ import java.util.List;
 public class PostDao {
     private MutableLiveData<List<PostHolder>> posts;
 
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref;
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference ref;
 
     private static PostDao instance;
     private static Object lock = new Object();

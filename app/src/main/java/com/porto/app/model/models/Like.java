@@ -53,4 +53,13 @@ public class Like {
     public int hashCode() {
         return Objects.hash(postId, userId);
     }
+
+    @Override
+    public String toString() {
+        return "\n\tLike{" +
+                "postId='" + postId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", value=" + value +
+                '}';
+    }
 }
