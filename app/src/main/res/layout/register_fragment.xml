@@ -21,7 +21,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginVertical="4dp">
 
             <ImageButton
                 android:id="@+id/register_back"
@@ -48,44 +49,49 @@
         </LinearLayout>
 
         <EditText
+            android:layout_marginVertical="4dp"
             android:id="@+id/register_usernameField"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
+            android:autofillHints="personName|username"
             android:ems="10"
             android:hint="@string/username"
             android:inputType="text" />
 
         <EditText
+            android:layout_marginVertical="4dp"
             android:id="@+id/register_emailField"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
+            android:autofillHints="emailAddress"
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress" />
 
         <EditText
+            android:layout_marginVertical="4dp"
             android:id="@+id/register_passwordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
+            android:autofillHints="password"
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword" />
 
         <EditText
+            android:layout_marginVertical="4dp"
             android:id="@+id/register_passwordConfirmField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
+            android:autofillHints="password"
             android:ems="10"
             android:hint="@string/password_confirm"
             android:inputType="textPassword" />
 
         <Button
+            android:layout_marginVertical="4dp"
             android:id="@+id/register_reg_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

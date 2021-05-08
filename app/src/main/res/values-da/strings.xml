@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Pørtø</string>
+    <string name="welcome">Wælcøme to Pørtø!</string>
+    <string name="log">Løg in</string>
+    <string name="password">Påsswørd</string>
+    <string name="password_confirm">Cønfirm påsswørd</string>
+    <string name="username_email">Æmåil</string>
+    <string name="username">Yøur nåmæ</string>
+    <string name="email">Æmåil</string>
+    <string name="register">Rægistær</string>
+    <string name="menu_profile">Prøfilæ</string>
+    <string name="menu_home">Høme</string>
+    <string name="menu_chat">Chåt</string>
+    <string name="title_activity_home">Måinåctivity</string>
+    <string name="title_home">Hømæ</string>
+    <string name="title_dashboard">Dåshbøard</string>
+    <string name="title_notifications">Nøtificåtiøns</string>
+    <string name="post_name" translatable="false">Jøhn Døæ</string>
+    <string name="postFieldHint">Writæ sømæthing hæræ…</string>
+    <string name="postButton">Pøst</string>
+    <string name="your_comment">Yøur cømmænt…</string>
+    <string name="comments">Cømmænts</string>
+</resources>

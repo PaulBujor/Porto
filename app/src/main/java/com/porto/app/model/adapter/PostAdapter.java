@@ -1,15 +1,20 @@
 package com.porto.app.model.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.porto.app.R;
@@ -50,14 +55,29 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             holder.username.setText(username);
         });
         holder.postText.setText(posts.get(position).getPost().getText());
+
         holder.postTimestamp.setText(LocalDateTime.ofInstant(Instant.ofEpochMilli(posts.get(position).getPost().getTimestamp()),
                 TimeZone.getDefault().toZoneId()).toString());
 
-        LikeRepository likeRepo = LikeRepository.getInstance();
+        holder.comment.setOnClickListener(view -> {
+            String postId = posts.get(position).getPostUID();
+            Bundle bundle = new Bundle();
+            bundle.putString("post", postId);
+            Navigation.findNavController(view).navigate(R.id.viewCommentsAction, bundle);
+        });
 
-        Log.i("Default color", holder.like.getBackground().toString());
+        holder.share.setOnClickListener(view -> createSharePostIntent(posts.get(position), holder));
 
         setAutoUpdateScore(holder, position);
+    }
+
+    private void createSharePostIntent(PostHolder post, ViewHolder holder) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, String.format("Saw this post from %s on Porto: \n\n \"%s\"", post.getWrittenBy().getUsername().getValue(), post.getPost().getText()));
+
+        Intent shareIntent = Intent.createChooser(intent, null);
+        holder.context.startActivity(shareIntent);
     }
 
     private void setAutoUpdateScore(ViewHolder holder, int position) {
@@ -125,6 +145,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         ImageButton comment;
         ImageButton share;
 
+        Context context;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             profileImage = itemView.findViewById(R.id.post_profileImage);
@@ -135,6 +157,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             like = itemView.findViewById(R.id.likeButton);
             dislike = itemView.findViewById(R.id.dislikeButton);
             score = itemView.findViewById(R.id.post_score);
+
+            comment = itemView.findViewById(R.id.commentButton);
+            share = itemView.findViewById(R.id.shareButton);
+
+            context = itemView.getContext();
         }
     }
 }

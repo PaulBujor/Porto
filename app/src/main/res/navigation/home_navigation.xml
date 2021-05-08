@@ -16,6 +16,13 @@
             app:exitAnim="@anim/fragment_fade_exit"
             app:popEnterAnim="@anim/fragment_fade_enter"
             app:popExitAnim="@anim/fragment_fade_exit"/>
+        <action
+            android:id="@+id/viewCommentsAction"
+            app:destination="@id/commentFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"/>
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -32,4 +39,14 @@
         android:name="com.porto.app.ui.profile.ProfileFragment"
         tools:layout="@layout/profile_fragment"
         android:label="Your profile" />
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="com.porto.app.ui.comment.CommentFragment"
+        android:label="Comments"
+        tools:layout="@layout/comment_fragment">
+        <argument
+            android:name="postID"
+            app:argType="string"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

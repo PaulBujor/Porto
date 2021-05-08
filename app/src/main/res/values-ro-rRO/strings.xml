@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Porto</string>
+    <string name="welcome">Porto</string>
+    <string name="log">Log in</string>
+    <string name="password">Parola</string>
+    <string name="password_confirm">Confirmare parola</string>
+    <string name="username_email">Email</string>
+    <string name="username">Nume</string>
+    <string name="email">Email</string>
+    <string name="register">Inregistrare</string>
+    <string name="menu_profile">Profil</string>
+    <string name="menu_home">Acasa</string>
+    <string name="menu_chat">Conversatii</string>
+    <string name="title_activity_home">Principal</string>
+    <string name="title_home">Acasa</string>
+    <string name="title_dashboard">Panou de control</string>
+    <string name="title_notifications">Notificari</string>
+    <string name="postFieldHint">Scrie ceva aici…</string>
+    <string name="postButton">Postare</string>
+    <string name="your_comment">Comentariul tau…</string>
+    <string name="comments">Comentarii</string>
+</resources>

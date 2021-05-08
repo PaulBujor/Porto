@@ -3,9 +3,9 @@
     <string name="welcome">Welcome to Porto!</string>
     <string name="log">Log in</string>
     <string name="password">Password</string>
-    <string name="password_confirm">Password</string>
+    <string name="password_confirm">Confirm password</string>
     <string name="username_email">Email</string>
-    <string name="username">Username</string>
+    <string name="username">Your name</string>
     <string name="email">Email</string>
     <string name="register">Register</string>
     <string name="menu_profile">Profile</string>
@@ -15,7 +15,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="post_name">John Doe</string>
-    <string name="postFieldHint">Write something here...</string>
+    <string name="post_name" translatable="false">John Doe</string>
+    <string name="postFieldHint">Write something here…</string>
     <string name="postButton">Post</string>
+    <string name="your_comment">Your comment…</string>
+    <string name="comments">Comments</string>
 </resources>

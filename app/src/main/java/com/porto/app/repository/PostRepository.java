@@ -36,4 +36,10 @@ public class PostRepository {
     public void addPost(Post post) {
         postDao.addPost(post);
     }
+
+    public PostHolder getPost(String postID) {
+        if(!postID.equals("0"))
+        return postDao.getPost(postID);
+        else return new PostHolder();
+    }
 }

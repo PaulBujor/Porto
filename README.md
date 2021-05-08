@@ -12,7 +12,7 @@ Because modern social media apps are full of features most people don't even use
 - [x] Ability for users to see posts
 - [x] Ability for users to add posts
 - [x] Ability for users to like/dislike posts
-- [ ] Ability for users to comment on posts (See "Could have" #x)
+- [x] Ability for users to comment on posts
 
 ###### Should have
 - [ ] Users should see only posts from people they follow

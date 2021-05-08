@@ -56,18 +56,6 @@ public class LikeDao {
                         Like like = new Like();
                         likeHolder.setLike(subSnapshot.getValue(Like.class));
 
-//                        for (DataSnapshot child : subSnapshot.getChildren())
-//                            switch (child.getKey()) {
-//                                case "postId":
-//                                    like.setPostId(child.getValue().toString());
-//                                    break;
-//                                case "userId":
-//                                    like.setUserId(child.getValue().toString());
-//                                    break;
-//                                case "value":
-//                                    like.setValue(Integer.parseInt(child.getValue().toString()));
-//                                    break;
-//                            }
                         currentLikes.add(likeHolder);
                     }
                 } catch (Exception e) {
@@ -89,7 +77,7 @@ public class LikeDao {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                System.out.println("The read failed: " + error.getCode());
             }
         });
     }

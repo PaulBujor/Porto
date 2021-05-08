@@ -43,7 +43,7 @@ public class PostDao {
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
                     //iterate through all elements from posts tree
-                    while(null != (subSnapshot = iterator.next())) {
+                    while (null != (subSnapshot = iterator.next())) {
                         PostHolder postHolder = new PostHolder(subSnapshot.getKey());
 
                         //keep reference to post as it is updated with data
@@ -106,5 +106,12 @@ public class PostDao {
 //        List<Post> currentPosts = posts.getValue();
 //        currentPosts.add(post);
 //        posts.setValue(currentPosts);
+    }
+
+    public PostHolder getPost(String postID) {
+        for (PostHolder holder : posts.getValue())
+            if (holder.getPostUID().equals(postID))
+                return holder;
+        return null;
     }
 }
