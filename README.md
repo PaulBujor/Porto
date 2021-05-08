@@ -11,7 +11,7 @@ Because modern social media apps are full of features most people don't even use
 ###### Must have
 - [x] Ability for users to see posts
 - [x] Ability for users to add posts
-- [ ] Ability for users to like/dislike posts
+- [x] Ability for users to like/dislike posts
 - [ ] Ability for users to comment on posts (See "Could have" #x)
 
 ###### Should have

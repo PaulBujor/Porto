@@ -1,5 +1,6 @@
 package com.porto.app.ui.profile;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +21,15 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.porto.app.R;
+import com.porto.app.model.adapter.PostAdapter;
+import com.porto.app.model.models.holder.PostHolder;
+
+import java.util.List;
 
 public class ProfileFragment extends Fragment {
     private TextView name;
     private ImageView profile;
+    private RecyclerView postList;
 
     private Button logOutButton;
 
@@ -44,6 +52,9 @@ public class ProfileFragment extends Fragment {
         logOutButton = view.findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(v -> logOut(v));
 
+        postList = view.findViewById(R.id.profilePostRecycler);
+        //postList.hasFixedSize();
+
         return view;
     }
 
@@ -65,6 +76,17 @@ public class ProfileFragment extends Fragment {
         mViewModel.getUser().getUsername().observeForever(username -> {
             name.setText(username);
         });
+
+        mViewModel.getPosts().observe(getViewLifecycleOwner(), postsObserver);
     }
+
+    private Observer<List<PostHolder>> postsObserver = new Observer<List<PostHolder>>() {
+        @Override
+        public void onChanged(List<PostHolder> posts) {
+            PostAdapter adapter = new PostAdapter(posts);
+            postList.setLayoutManager(new LinearLayoutManager(getContext()));
+            postList.setAdapter(adapter);
+        }
+    };
 
 }
