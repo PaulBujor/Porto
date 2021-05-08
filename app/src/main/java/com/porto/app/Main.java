@@ -17,7 +17,11 @@ public class Main extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
+        try {
+            FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
+        } catch (RuntimeException e) {
+            //
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
