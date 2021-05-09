@@ -15,6 +15,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.porto.app.R;
@@ -25,8 +26,8 @@ public class LogInFragment extends Fragment {
     private Button log_in;
     private Button register;
 
-    private EditText email;
-    private EditText password;
+    private TextInputEditText email;
+    private TextInputEditText password;
 
     private LogInViewModel mViewModel;
 
@@ -46,8 +47,8 @@ public class LogInFragment extends Fragment {
         log_in.setOnClickListener((v) -> logIn(v));
         register.setOnClickListener((v) -> open_register(v));
 
-        email = view.findViewById(R.id.login_emailField);
-        password = view.findViewById(R.id.login_passwordField);
+        email = view.findViewById(R.id.loginEmailEditInput);
+        password = view.findViewById(R.id.loginPasswordEditInput);
 
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
             logInUser(FirebaseAuth.getInstance().getCurrentUser());

@@ -32,27 +32,44 @@
             android:layout_marginVertical="4dp"
             android:typeface="monospace" />
 
-        <EditText
-            android:id="@+id/login_emailField"
+<!--        todo https://github.com/alexandrutatarciuc/Covid19PassportApp/blob/main/app/src/main/res/layout/fragment_login.xml-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginVertical="4dp"
+            android:id="@+id/loginEmailInput"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="emailAddress"
-            android:ems="10"
             android:hint="@string/username_email"
-            android:layout_marginVertical="4dp"
-            android:inputType="textEmailAddress" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/login_passwordField"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginEmailEditInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginVertical="4dp"
+            android:id="@+id/loginPasswordInput"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="password"
-            android:ems="10"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="@string/password"
-            android:layout_marginVertical="4dp"
-            android:inputType="textPassword" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginPasswordEditInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

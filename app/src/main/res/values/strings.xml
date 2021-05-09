@@ -20,4 +20,5 @@
     <string name="postButton">Post</string>
     <string name="your_comment">Your comment…</string>
     <string name="comments">Comments</string>
+    <string name="send">Send</string>
 </resources>

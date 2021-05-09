@@ -48,10 +48,10 @@ public class RegisterFragment extends Fragment {
         register = view.findViewById(R.id.register_reg_button);
         register.setOnClickListener(v -> register(v));
 
-        username = view.findViewById(R.id.register_usernameField);
-        email = view.findViewById(R.id.register_emailField);
-        password = view.findViewById(R.id.register_passwordField);
-        passwordConfirm = view.findViewById(R.id.register_passwordConfirmField);
+        username = view.findViewById(R.id.registerNameEditInput);
+        email = view.findViewById(R.id.registerEmailEditInput);
+        password = view.findViewById(R.id.registerPasswordEditInput);
+        passwordConfirm = view.findViewById(R.id.registerPasswordConfirmEditInput);
 
         return view;
     }

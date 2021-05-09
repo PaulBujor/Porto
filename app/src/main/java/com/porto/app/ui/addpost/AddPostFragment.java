@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.porto.app.R;
 import com.porto.app.model.models.Post;
 
@@ -25,7 +26,7 @@ public class AddPostFragment extends Fragment {
     private ImageView profile;
     private ImageButton backButton;
     private Button addPostButton;
-    private EditText textField;
+    private TextInputEditText textField;
     private TextView profileName;
 
     private AddPostViewModel mViewModel;
@@ -42,7 +43,7 @@ public class AddPostFragment extends Fragment {
         addPostButton = view.findViewById(R.id.addPostButton);
         addPostButton.setOnClickListener(v -> addPost(v));
 
-        textField = view.findViewById(R.id.toPostText);
+        textField = view.findViewById(R.id.addPostEditInput);
 
         profile = view.findViewById(R.id.profileImage);
         profile.setImageResource(R.drawable.ic_profile);
