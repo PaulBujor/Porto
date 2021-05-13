@@ -58,15 +58,11 @@ public class RegisterFragment extends Fragment {
 
     private void register(View v) {
         try {
-            if(passwordConfirm.getText().toString().equals(password.getText().toString())) {
+            if (passwordConfirm.getText().toString().equals(password.getText().toString())) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(task -> {
-                    if(task.isSuccessful()) {
-                        FirebaseAuth.getInstance().signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(logInTask -> {
-                            if (logInTask.isSuccessful()) {
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                mViewModel.registerUser(user, username.getText().toString());
-                            }
-                        });
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        mViewModel.registerUser(user, username.getText().toString());
                         backToLogin(v);
                     } else {
                         Log.i("Register", task.getException().getMessage());

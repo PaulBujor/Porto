@@ -3,134 +3,141 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:background="@drawable/shadow"
-    android:elevation="4dp">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="16dp"
+        card_view:cardElevation="4dp">
 
-        <ImageView
-            android:id="@+id/post_profileImage"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_profile" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/post_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="\@johndoe"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/post_profileImage"
-            app:layout_constraintTop_toTopOf="@+id/post_profileImage" />
+            <ImageView
+                android:id="@+id/post_profileImage"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_profile" />
 
-        <TextView
-            android:id="@+id/post_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et diam velit. Aliquam aliquam mi eu leo imperdiet, eu accumsan massa volutpat. Pellentesque consequat nisl ac nunc gravida auctor. Phasellus tincidunt sollicitudin neque, vitae cursus leo ultricies vitae. Sed eget nulla sit amet felis volutpat ultrices eu ac magna. Etiam nec ligula condimentum, viverra nunc et, consectetur turpis. Nam sollicitudin diam mollis risus rhoncus, bibendum aliquet lorem volutpat. Fusce eget tellus sed felis elementum ultricies. Donec sed ultricies dolor."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_profileImage" />
+            <TextView
+                android:id="@+id/post_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="\@johndoe"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/post_profileImage"
+                app:layout_constraintTop_toTopOf="@+id/post_profileImage" />
 
-        <ImageButton
-            android:id="@+id/likeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#00FFFFFF"
-            android:elevation="5dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="6dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="6dp"
-            android:src="@drawable/ic_thumbs_up"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_text" />
+            <TextView
+                android:id="@+id/post_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et diam velit. Aliquam aliquam mi eu leo imperdiet, eu accumsan massa volutpat. Pellentesque consequat nisl ac nunc gravida auctor. Phasellus tincidunt sollicitudin neque, vitae cursus leo ultricies vitae. Sed eget nulla sit amet felis volutpat ultrices eu ac magna. Etiam nec ligula condimentum, viverra nunc et, consectetur turpis. Nam sollicitudin diam mollis risus rhoncus, bibendum aliquet lorem volutpat. Fusce eget tellus sed felis elementum ultricies. Donec sed ultricies dolor."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_profileImage" />
 
-        <ImageButton
-            android:id="@+id/dislikeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#00FFFFFF"
-            android:paddingLeft="10dp"
-            android:paddingTop="6dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="6dp"
-            android:src="@drawable/ic_thumbs_down"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/post_score"
-            app:layout_constraintTop_toBottomOf="@+id/post_text"
-            app:layout_constraintVertical_bias="0.0" />
+            <ImageButton
+                android:id="@+id/likeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="#00FFFFFF"
+                android:elevation="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="6dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="6dp"
+                android:src="@drawable/ic_thumbs_up"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_text" />
 
-        <ImageButton
-            android:id="@+id/commentButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#00FFFFFF"
-            android:paddingLeft="10dp"
-            android:paddingTop="6dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="6dp"
-            android:src="@drawable/ic_comment"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/dislikeButton"
-            app:layout_constraintTop_toBottomOf="@+id/post_text" />
+            <ImageButton
+                android:id="@+id/dislikeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="#00FFFFFF"
+                android:paddingLeft="10dp"
+                android:paddingTop="6dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="6dp"
+                android:src="@drawable/ic_thumbs_down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/post_score"
+                app:layout_constraintTop_toBottomOf="@+id/post_text"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <ImageButton
-            android:id="@+id/shareButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#00FFFFFF"
-            android:paddingLeft="10dp"
-            android:paddingTop="6dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="6dp"
-            android:src="@drawable/ic_share"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_text" />
+            <ImageButton
+                android:id="@+id/commentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="#00FFFFFF"
+                android:paddingLeft="10dp"
+                android:paddingTop="6dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="6dp"
+                android:src="@drawable/ic_comment"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/dislikeButton"
+                app:layout_constraintTop_toBottomOf="@+id/post_text" />
 
-        <TextView
-            android:id="@+id/post_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="100"
-            app:layout_constraintBottom_toBottomOf="@+id/dislikeButton"
-            app:layout_constraintStart_toEndOf="@+id/likeButton"
-            app:layout_constraintTop_toTopOf="@+id/dislikeButton" />
+            <ImageButton
+                android:id="@+id/shareButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="#00FFFFFF"
+                android:paddingLeft="10dp"
+                android:paddingTop="6dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="6dp"
+                android:src="@drawable/ic_share"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_text" />
 
-        <TextView
-            android:id="@+id/post_timestamp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/post_profileImage"
-            app:layout_constraintStart_toEndOf="@+id/post_profileImage" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/post_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="100"
+                app:layout_constraintBottom_toBottomOf="@+id/dislikeButton"
+                app:layout_constraintStart_toEndOf="@+id/likeButton"
+                app:layout_constraintTop_toTopOf="@+id/dislikeButton" />
+
+            <TextView
+                android:id="@+id/post_timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/post_profileImage"
+                app:layout_constraintStart_toEndOf="@+id/post_profileImage" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </FrameLayout>
