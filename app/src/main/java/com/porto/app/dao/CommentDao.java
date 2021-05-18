@@ -46,7 +46,8 @@ public class CommentDao {
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
                     //iterate through all elements from posts tree
-                    while (null != (subSnapshot = iterator.next())) {
+                    while (iterator.hasNext()) {
+                        subSnapshot = iterator.next();
                         currentComments.add(subSnapshot.getValue(Comment.class));
                     }
                 } catch (Exception e) {

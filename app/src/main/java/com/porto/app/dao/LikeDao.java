@@ -49,7 +49,8 @@ public class LikeDao {
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
                     //iterate through all elements from posts tree
-                    while (null != (subSnapshot = iterator.next())) {
+                    while (iterator.hasNext()) {
+                        subSnapshot = iterator.next();
                         LikeHolder likeHolder = new LikeHolder(subSnapshot.getKey());
 
                         //keep reference to post as it is updated with data

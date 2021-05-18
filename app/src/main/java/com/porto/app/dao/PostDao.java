@@ -34,6 +34,7 @@ public class PostDao {
         ref = database.getReference("porto-social-app-default-rtdb");
 
         posts = new MutableLiveData<>();
+
         ref.child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -43,7 +44,8 @@ public class PostDao {
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
                     //iterate through all elements from posts tree
-                    while (null != (subSnapshot = iterator.next())) {
+                    while (iterator.hasNext()) {
+                        subSnapshot = iterator.next();
                         PostHolder postHolder = new PostHolder(subSnapshot.getKey());
 
                         //keep reference to post as it is updated with data
