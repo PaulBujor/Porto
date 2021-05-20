@@ -13,14 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.porto.app.R;
-import com.porto.app.model.models.Post;
+import com.porto.app.model.models.social.Post;
 
 public class AddPostFragment extends Fragment {
     private ImageView profile;

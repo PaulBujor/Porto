@@ -1,4 +1,4 @@
-package com.porto.app.model.models;
+package com.porto.app.model.models.social;
 
 import android.os.Build;
 

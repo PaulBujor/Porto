@@ -1,6 +1,6 @@
 package com.porto.app.model.models.holder;
 
-import com.porto.app.model.models.Post;
+import com.porto.app.model.models.social.Post;
 import com.porto.app.model.models.User;
 
 import java.util.Objects;

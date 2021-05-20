@@ -9,7 +9,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,15 +24,11 @@ import android.widget.TextView;
 import com.porto.app.R;
 import com.porto.app.model.Model;
 import com.porto.app.model.adapter.CommentAdapter;
-import com.porto.app.model.adapter.PostAdapter;
-import com.porto.app.model.models.Comment;
-import com.porto.app.model.models.Like;
-import com.porto.app.model.models.Post;
+import com.porto.app.model.models.social.Comment;
+import com.porto.app.model.models.social.Like;
 import com.porto.app.model.models.holder.LikeHolder;
 import com.porto.app.model.models.holder.PostHolder;
 import com.porto.app.repository.LikeRepository;
-
-import org.w3c.dom.Text;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

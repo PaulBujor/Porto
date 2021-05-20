@@ -38,6 +38,7 @@ public class SocialFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.social_fragment, container, false);
         postList = view.findViewById(R.id.postRecycler);
+        postList.setLayoutManager(new LinearLayoutManager(getContext()));
 //        postList.hasFixedSize();
         createPostFAB = view.findViewById(R.id.createPostFAB);
         createPostFAB.setOnClickListener(v -> createPost(v));
@@ -56,16 +57,9 @@ public class SocialFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(SocialViewModel.class);
         // TODO: Use the ViewModel
 
-        mViewModel.getPosts().observe(getViewLifecycleOwner(), postsObserver);
-    }
-
-    private Observer<List<PostHolder>> postsObserver = new Observer<List<PostHolder>>() {
-        @Override
-        public void onChanged(List<PostHolder> posts) {
-            PostAdapter adapter = new PostAdapter(posts);
-            postList.setLayoutManager(new LinearLayoutManager(getContext()));
+        mViewModel.getPosts().observe(getViewLifecycleOwner(), list -> {
+            PostAdapter adapter = new PostAdapter(list);
             postList.setAdapter(adapter);
-        }
-    };
-
+        });
+    }
 }

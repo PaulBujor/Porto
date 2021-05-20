@@ -3,7 +3,7 @@ package com.porto.app.repository;
 import androidx.lifecycle.LiveData;
 
 import com.porto.app.dao.PostDao;
-import com.porto.app.model.models.Post;
+import com.porto.app.model.models.social.Post;
 import com.porto.app.model.models.holder.PostHolder;
 
 import java.util.List;

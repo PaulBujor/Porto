@@ -3,7 +3,7 @@ package com.porto.app.ui.addpost;
 import androidx.lifecycle.ViewModel;
 
 import com.porto.app.model.Model;
-import com.porto.app.model.models.Post;
+import com.porto.app.model.models.social.Post;
 import com.porto.app.model.models.User;
 import com.porto.app.repository.PostRepository;
 

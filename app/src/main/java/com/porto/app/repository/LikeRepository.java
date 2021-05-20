@@ -3,7 +3,7 @@ package com.porto.app.repository;
 import androidx.lifecycle.LiveData;
 
 import com.porto.app.dao.LikeDao;
-import com.porto.app.model.models.Like;
+import com.porto.app.model.models.social.Like;
 import com.porto.app.model.models.holder.LikeHolder;
 import com.porto.app.model.models.holder.PostHolder;
 

@@ -10,8 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.porto.app.R;
-import com.porto.app.model.models.Comment;
-import com.porto.app.repository.PostRepository;
+import com.porto.app.model.models.social.Comment;
 import com.porto.app.repository.UserRepository;
 
 import java.util.List;

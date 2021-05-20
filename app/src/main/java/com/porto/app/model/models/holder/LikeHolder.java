@@ -1,6 +1,6 @@
 package com.porto.app.model.models.holder;
 
-import com.porto.app.model.models.Like;
+import com.porto.app.model.models.social.Like;
 
 import java.util.Objects;
 

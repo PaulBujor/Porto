@@ -53,6 +53,7 @@ public class ProfileFragment extends Fragment {
         logOutButton.setOnClickListener(v -> logOut(v));
 
         postList = view.findViewById(R.id.profilePostRecycler);
+        postList.setLayoutManager(new LinearLayoutManager(getContext()));
         //postList.hasFixedSize();
 
         return view;
@@ -77,16 +78,9 @@ public class ProfileFragment extends Fragment {
             name.setText(username);
         });
 
-        mViewModel.getPosts().observe(getViewLifecycleOwner(), postsObserver);
-    }
-
-    private Observer<List<PostHolder>> postsObserver = new Observer<List<PostHolder>>() {
-        @Override
-        public void onChanged(List<PostHolder> posts) {
+        mViewModel.getPosts().observe(getViewLifecycleOwner(), posts -> {
             PostAdapter adapter = new PostAdapter(posts);
-            postList.setLayoutManager(new LinearLayoutManager(getContext()));
             postList.setAdapter(adapter);
-        }
-    };
-
+        });
+    }
 }

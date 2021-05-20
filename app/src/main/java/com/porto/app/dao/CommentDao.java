@@ -11,11 +11,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.porto.app.model.models.Comment;
-import com.porto.app.model.models.Like;
-import com.porto.app.model.models.holder.LikeHolder;
+import com.porto.app.model.models.social.Comment;
 import com.porto.app.model.models.holder.PostHolder;
-import com.porto.app.repository.CommentRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;

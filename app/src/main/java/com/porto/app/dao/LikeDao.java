@@ -12,15 +12,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.porto.app.model.Model;
-import com.porto.app.model.models.Like;
-import com.porto.app.model.models.Post;
-import com.porto.app.model.models.User;
+import com.porto.app.model.models.social.Like;
 import com.porto.app.model.models.holder.LikeHolder;
 import com.porto.app.model.models.holder.PostHolder;
-import com.porto.app.repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
